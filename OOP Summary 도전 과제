@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+	virtual void makeSound() = 0;
+
+	Animal() {
+		cout << "Animal 기본 생성자 호출!" << endl;
+	}
+	virtual ~Animal() {
+		cout << "Animal 소멸자 호출!" << endl;
+	}
+};
+
+class Dog : public Animal {
+public:
+	virtual void makeSound() {
+		cout << "Dog : 멍멍!" << endl;
+	}
+
+	Dog() {
+		cout << "Dog 기본 생성자 호출!" << endl;
+	}
+	~Dog() {
+		cout << "Dog 소멸자 호출!" << endl;
+	}
+};
+
+class Cat : public Animal {
+public:
+	virtual void makeSound() {
+		cout << "Cat : 야옹~" << endl;
+	}
+
+	Cat() {
+		cout << "Cat 기본 생성자 호출!" << endl;
+	}
+	~Cat() {
+		cout << "Cat 소멸자 호출!" << endl;
+	}
+
+};
+
+class Cow : public Animal {
+public:
+	virtual void makeSound() {
+		cout << "Cow : 음머~" << endl;
+	}
+
+	Cow() {
+		cout << "Cow 기본 생성자 호출!" << endl;
+	}
+	~Cow() {
+		cout << "Cow 소멸자 호출!" << endl;
+	}
+};
+
+int main() {
+	const int AnimalsCount = 3;
+	Animal* Animals[AnimalsCount];
+
+	Dog* dog = new Dog();
+	Cat* cat = new Cat();
+	Cow* cow = new Cow();
+
+	Animals[0] = dog;
+	Animals[1] = cat;
+	Animals[2] = cow;
+
+	for (int i = 0; i < AnimalsCount; i++) {
+		Animals[i]->makeSound();
+		delete Animals[i];
+	}
+}
